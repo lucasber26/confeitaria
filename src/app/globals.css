@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --color-primary: #00BFA5;
+  --color-primary-dark: #00796B;
+  --color-primary-light: #B2DFDB;
+  --color-secondary: #f06292;
+  --color-secondary-dark: #d81b60;
+  --color-bg-main: #F0FDF4;
+  --color-bg-alt: #E0F2F1;
+  --color-text-main: #263238;
+  --color-text-muted: #546E7A;
+
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translateY(0); }
+    50% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translateY(-20px); }
+    100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translateY(0); }
+  }
+}
+
+:root {
+  --background: #F0FDF4;
+  --foreground: #263238;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-main text-text-main font-sans antialiased;
+  }
+}
+
+.highlight {
+  @apply relative inline-block text-secondary;
+}
+
+.highlight::after {
+  content: '';
+  @apply absolute bottom-1 left-0 w-full h-3 bg-primary-light -z-10 -rotate-2;
+}
+
+.btn-primary {
+  @apply bg-linear-to-br from-secondary to-secondary-dark text-white px-6 py-3 rounded-full font-semibold transition-all shadow-md hover:-translate-y-1 hover:shadow-xl inline-block text-center;
+}
+
+.section {
+  @apply py-24 px-[5%];
+}
+
+.section-title {
+  @apply text-center mb-16;
+}
+
+.section-title h2 {
+  @apply text-5xl font-serif mb-2 text-primary-dark;
+}
+
+.section-title p {
+  @apply text-text-muted text-lg;
+}

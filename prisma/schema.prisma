@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Configuracao {
+  id              Int     @id @default(1)
+  siteTitle       String  @default("Doce Amor | Confeitaria Artesanal")
+  heroTitle       String  @default("Arte em forma de Açúcar")
+  heroSubtitle    String  @default("Descubra os sabores mais incríveis e os temas mais encantadores para tornar o seu momento inesquecível. Tudo feito com muito amor e ingredientes selecionados.")
+  heroImage       String  @default("https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=800&auto=format&fit=crop")
+  phone           String  @default("(66) 99624-5858")
+  whatsapp        String  @default("5566996245858")
+  instagram       String?
+  facebook        String?
+  alertBannerActive Boolean @default(false)
+  alertBannerText   String?
+}
+
+model Recheio {
+  id          String   @id @default(cuid())
+  nome        String
+  descricao   String
+  imagem      String
+  precoKg     Float
+  tags        String?
+  destaque    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model GaleriaItem {
+  id        String   @id @default(cuid())
+  imagem    String
+  titulo    String
+  categoria String
+  ordem     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model OpcaoFormulario {
+  id        String   @id @default(cuid())
+  categoria String   
+  valor     String
+  createdAt DateTime @default(now())
+}
+
+model Usuario {
+  id       String @id @default(cuid())
+  login    String @unique
+  password String
+}
